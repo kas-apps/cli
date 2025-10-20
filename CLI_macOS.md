@@ -107,6 +107,18 @@ GUI（グラフィカルな画面）ではフォルダ、CLI（文字の画面�
 ### PC の中はどうなってる？（階層構造）
 
 - macOS のファイルは「入れ子（ディレクトリの中にディレクトリ）」の階層構造だよ。
+
+```tree
+/
+└── Users/
+    ├── guest/
+    │   ├── Desktop/
+    │   └── Documents/
+    └── you/
+        ├── Desktop/
+        └── Documents/
+```
+
 - キーワード
   - 絶対パス：ルート（`/`）から全部書く（例：`/Users/you/Desktop`）
   - 相対パス：いまいる場所からの道順（例：`../Documents`）
@@ -292,6 +304,19 @@ ls
 README.md  hello-copy.txt  hello.txt  logs  notes.txt  photos  project  scripts
 ```
 
+ファイルを別のディレクトリにコピー：
+
+```bash
+cp hello.txt photos/
+ls photos
+```
+
+出力（例）:
+
+```bash
+hello.txt
+```
+
 ディレクトリをコピー（`-R` は中身ごと再帰的に）：
 
 ```bash
@@ -368,6 +393,9 @@ ls | grep hello || echo "hello.txt はありません"
 hello.txt はありません
 ```
 
+> [!CAUTION]
+> ファイル名がハイフン(`-`)で始まるファイルを削除する時は、`rm -- -weird.txt`のように、ファイル名の前に`--`をつけましょう。そうしないと、ファイル名がコマンドのオプションだと勘違いされて、エラーになることがあります。
+
 確認しながら削除（`-i` は対話的。うっかり防止に超おすすめ！）：
 
 ```bash
@@ -383,9 +411,6 @@ rm -i notes.txt
 > ```bash
 > mv notes.txt ~/.Trash/
 > ```
-
-> [!CAUTION]
-> ファイル名がハイフン(`-`)で始まるファイルを削除する時は、`rm -- -weird.txt`のように、ファイル名の前に`--`をつけましょう。そうしないと、ファイル名がコマンドのオプションだと勘違いされて、エラーになることがあります。
 
 ---
 
